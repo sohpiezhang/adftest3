@@ -1,0 +1,16 @@
+{
+	"name": "ds_in",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "storageLinkedService001",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureBlob",
+		"typeProperties": {
+			"fileName": "iris_setosa.csv",
+			"folderPath": "blob-container-01"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
