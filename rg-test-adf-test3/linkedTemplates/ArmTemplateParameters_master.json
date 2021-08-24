@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "rg-test-adf-test3"
+		},
+		"storageLinkedService001_connectionString": {
+			"value": ""
+		},
+		"ds_in_properties_typeProperties_fileName": {
+			"value": "iris_setosa.csv"
+		},
+		"ds_in_properties_typeProperties_folderPath": {
+			"value": "blob-container-01"
+		},
+		"ds_out_properties_typeProperties_folderPath": {
+			"value": "blob-container-01/output2"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

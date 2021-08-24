@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "rg-test-adf-test3"
+		},
+		"storageLinkedService001_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'storageLinkedService001'"
+		},
+		"ds_in_properties_typeProperties_fileName": {
+			"type": "string",
+			"defaultValue": "iris_setosa.csv"
+		},
+		"ds_in_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "blob-container-01"
+		},
+		"ds_out_properties_typeProperties_folderPath": {
+			"type": "string",
+			"defaultValue": "blob-container-01/output2"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "rg-test-adf-test3_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"storageLinkedService001_connectionString": {
+						"value": "[parameters('storageLinkedService001_connectionString')]"
+					},
+					"ds_in_properties_typeProperties_fileName": {
+						"value": "[parameters('ds_in_properties_typeProperties_fileName')]"
+					},
+					"ds_in_properties_typeProperties_folderPath": {
+						"value": "[parameters('ds_in_properties_typeProperties_folderPath')]"
+					},
+					"ds_out_properties_typeProperties_folderPath": {
+						"value": "[parameters('ds_out_properties_typeProperties_folderPath')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
